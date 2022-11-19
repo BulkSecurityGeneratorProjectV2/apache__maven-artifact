@@ -9,6 +9,7 @@ import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,7 +43,7 @@ public class DefaultArtifactRepositoryFactoryTest
     private File createTempDir()
         throws IOException
     {
-        File f = File.createTempFile( "DefaultArtifactRepositoryFactoryTest.", ".dir" );
+        File f = Files.createTempFile( "DefaultArtifactRepositoryFactoryTest.", ".dir" ).toFile();
         FileUtils.forceDelete( f );
 
         f.mkdirs();

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -277,7 +278,7 @@ public class DefaultWagonManager
             // We do this in here so we can checksum the artifact metadata too, otherwise it could be metadata itself
             for (String extension : checksums.keySet()) {
                 // TODO: shouldn't need a file intermediatary - improve wagon to take a stream
-                File temp = File.createTempFile("maven-artifact", null);
+                File temp = Files.createTempFile( "maven-artifact", null ).toFile();
                 temp.deleteOnExit();
                 FileUtils.fileWrite(temp.getAbsolutePath(), "UTF-8", sums.get(extension));
 
